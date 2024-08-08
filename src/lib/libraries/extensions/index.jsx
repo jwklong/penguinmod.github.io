@@ -650,28 +650,6 @@ const menuItems = [
         internetConnectionRequired: true
     },
     {
-        name: (
-            <FormattedMessage
-                defaultMessage="HTML Canvas"
-                description="Name of Text extension"
-                id="canvas.name"
-            />
-        ),
-        extensionId: 'newCanvas',
-        iconURL: canvasExtensionBanner,
-        tags: ['penguinmod'],
-        insetIconURL: canvasExtensionIcon,
-        customInsetColor: '#0094FF',
-        description: (
-            <FormattedMessage
-                defaultMessage="Extra drawing tools using an HTML Canvas. Works well when used with other extensions."
-                description="Description of Text extension"
-                id="text.description"
-            />
-        ),
-        featured: true
-    },
-    {
         name: 'Color Picker',
         extensionId: 'shovelColorPicker',
         iconURL: theshovelColorPickerIcon,
