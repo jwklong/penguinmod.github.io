@@ -166,6 +166,7 @@ function protobufToJson(buffer) {
                     edited: target.blocks[block].mutation.edited,
                     optype: target.blocks[block].mutation.optype,
                     color: target.blocks[block].mutation.color,
+                    hasnext: target.blocks[block].next ? true : false,
                     children: []
                 }
             }
