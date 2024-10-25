@@ -221,6 +221,11 @@ const pmTranslators = [
         href: "https://studio.penguinmod.com/credits.html#",
     },
     {
+        text: 'LoyalBlackBishopyBoi',
+        image: `https://trampoline.turbowarp.org/avatars/by-username/LoyalBlackBishopyBoi`,
+        href: "https://scratch.mit.edu/users/LoyalBlackBishopyBoi/",
+    },
+    {
         text: 'onetoanother',
         image: `https://trampoline.turbowarp.org/avatars/by-username/onetoanother`,
         href: "https://penguinmod.com/profile?user=onetoanother",
