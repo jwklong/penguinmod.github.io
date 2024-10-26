@@ -5,12 +5,9 @@ import styles from './loader.css';
 import PropTypes from 'prop-types';
 import bindAll from 'lodash.bindall';
 
-import topBlock from './top-block.svg';
-import middleBlock from './middle-block.svg';
-import bottomBlock from './bottom-block.svg';
-
 import * as progressMonitor from './tw-progress-monitor';
 import isScratchDesktop from '../../lib/isScratchDesktop';
+import gear from './gear.svg';
 
 // tw:
 // we make some rather large changes here:
@@ -140,17 +137,16 @@ class LoaderComponent extends React.Component {
                 <div className={styles.container}>
                     <div className={styles.blockAnimation}>
                         <img
-                            className={styles.topBlock}
-                            src={topBlock}
+                            style={{width: '10em'}}
+                            className={styles.spin}
+                            src={gear}
                         />
                         <img
-                            className={styles.middleBlock}
-                            src={middleBlock}
+                            style={{width: '10em', position: 'relative', top: '-40px'}}
+                            className={styles.spinBack}
+                            src={gear}
                         />
-                        <img
-                            className={styles.bottomBlock}
-                            src={bottomBlock}
-                        />
+                        <br /><br />
                     </div>
                     <div className={styles.title}>
                         {mainMessages[this.props.messageId]}
