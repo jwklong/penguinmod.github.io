@@ -140,8 +140,8 @@ const Footer = () => (
             <div className={styles.footerText}>
                 <FormattedMessage
                     // eslint-disable-next-line max-len
-                    defaultMessage="PenguinMod and TurboWarp are not affiliated with Scratch, the Scratch Team, or the Scratch Foundation."
-                    description="Disclaimer that PenguinMod and TurboWarp are not connected to Scratch"
+                    defaultMessage="OnyxMod, PenguinMod and TurboWarp are not affiliated with Scratch, the Scratch Team, or the Scratch Foundation."
+                    description="Disclaimer that OnyxMod, PenguinMod and TurboWarp are not connected to Scratch"
                     id="tw.footer.disclaimer"
                 />
             </div>
@@ -165,7 +165,7 @@ const Footer = () => (
                 <div className={styles.footerSection}>
                     <a href="https://studio.penguinmod.com/PenguinMod-Packager">
                         {/* Do not translate */}
-                        {'PenguinMod Packager'}
+                        {'OnyxMod Packager'}
                     </a>
                     <a href="https://desktop.turbowarp.org/">
                         {/* Do not translate */}
@@ -272,9 +272,9 @@ class Interface extends React.Component {
     }
     handleUpdateProjectTitle (title, isDefault) {
         if (isDefault || !title) {
-            document.title = `PenguinMod - ${this.props.intl.formatMessage(messages.defaultTitle)}`;
+            document.title = `OnyxMod - ${this.props.intl.formatMessage(messages.defaultTitle)}`;
         } else {
-            document.title = `${title} - PenguinMod`;
+            document.title = `${title} - OnyxMod`;
         }
     }
     copyProjectLink (id) {

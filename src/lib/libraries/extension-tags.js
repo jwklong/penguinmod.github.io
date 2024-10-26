@@ -1,5 +1,7 @@
 import messages from './tag-messages.js';
 export default [
+    { tag: 'othermods', intlLabel: messages.othermods },
+    { tag: 'onyxmod', intlLabel: messages.onyxmod },
     { tag: 'penguinmod', intlLabel: messages.penguinmod },
     { tag: 'turbowarp', intlLabel: messages.turbowarp },
     { tag: 'scratch', intlLabel: messages.scratch },

@@ -432,7 +432,7 @@ class Blocks extends React.Component {
         const targetBlock = this.workspace.getBlockById(data.id);
         if (!targetBlock) return; // this happens when we switch sprites
         this.workspace.glowBlock(data.id, false);
-        this.workspace.reportValue(data.id, data.value, true);
+        if (!this.ScratchBlocks.DropDownDiv.isVisible()) this.workspace.reportValue(data.id, data.value, true);
         this.workspace.errorStack(data.id, true);
     }
     getToolboxXML () {

@@ -6,7 +6,7 @@ const manifest = {
   "tags": [
     "theme"
   ],
-  "enabledByDefault": false,
+  "enabledByDefault": true,
   "dynamicDisable": true,
   "userstyles": [
     {
@@ -21,6 +21,10 @@ const manifest = {
     {
       "name": "RedGuy7",
       "link": "https://scratch.mit.edu/users/RedGuy7/"
+    },
+    {
+      "name": "Aness6040",
+      "link": "https://scratch.mit.edu/users/AnessScratched/"
     }
   ]
 };

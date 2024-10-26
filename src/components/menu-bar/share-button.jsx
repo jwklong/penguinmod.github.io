@@ -28,7 +28,7 @@ const getProjectUri = () => new Promise(resolve => {
 const isUploadAvailable = async () => {
     let res = null;
     try {
-        res = await fetch('https://projects.penguinmod.com/api');
+        res = await fetch('https://projects.mubi.tech/api');
     } catch {
         // failed to fetch entirely
         return false;
@@ -60,7 +60,7 @@ class ShareButton extends React.Component {
         this.handleMessageEvent(e);
     }
     async handleMessageEvent(e) {
-        if (!e.origin.startsWith(`https://penguinmod.com`)) {
+        if (!e.origin.startsWith(`https://electramod-home.vercel.app`)) {
             return;
         }
 
@@ -148,7 +148,7 @@ class ShareButton extends React.Component {
             }
 
             const url = location.origin;
-            window.open(`https://penguinmod.com/${targetPage}?name=${this.props.projectTitle}${editPiece}${remixPiece}&external=${url}`, '_blank');
+            window.open(`https://electramod-home.vercel.app/${targetPage}?name=${this.props.projectTitle}${editPiece}${remixPiece}&external=${url}`, '_blank');
         });
     }
     render() {
@@ -168,7 +168,7 @@ class ShareButton extends React.Component {
                 <div className={classNames(styles.shareContent)}>
                     {isEdit ? <FormattedMessage
                             defaultMessage="Upload Edits"
-                            description="Text for uploading edits for projects on PenguinMod"
+                            description="Text for uploading edits for projects on ElectraMod"
                             id="gui.menuBar.pmedit"
                         /> :
                         (isRemix ?

@@ -31,7 +31,7 @@ import ChangeUsername from '../../containers/tw-change-username.jsx';
 import CloudVariablesToggler from '../../containers/tw-cloud-toggler.jsx';
 import TWSaveStatus from './tw-save-status.jsx';
 
-import { openTipsLibrary, openSettingsModal, openRestorePointModal } from '../../reducers/modals';
+import { openTipsLibrary, openSettingsModal, openRestorePointModal, openExtManagerModal } from '../../reducers/modals';
 import { setPlayer } from '../../reducers/mode';
 import {
     autoUpdateProject,
@@ -76,7 +76,13 @@ import dropdownCaret from './dropdown-caret.svg';
 import languageIcon from '../language-selector/language-icon.svg';
 import aboutIcon from './icon--about.svg';
 import errorIcon from './tw-error.svg';
-import themeIcon from './tw-moon.svg';
+import moonIcon from './tw-moon.svg';
+import sunIcon from './tw-sun.svg';
+
+import fileIcon from './icon--file.svg';
+import editIcon from './icon--edit.svg';
+import addonsIcon from './addons.svg';
+import advancedIcon from './tw-advanced.svg';
 
 import scratchLogo from './scratch-logo.svg';
 
@@ -473,19 +479,6 @@ class MenuBar extends React.Component {
             >
                 <div className={styles.mainMenu}>
                     <div className={styles.fileGroup}>
-                        {this.props.onClickLogo ? (
-                            <div className={classNames(styles.menuBarItem)}>
-                                <img
-                                    alt="Scratch"
-                                    className={classNames(styles.scratchLogo, {
-                                        [styles.clickable]: typeof this.props.onClickLogo !== 'undefined'
-                                    })}
-                                    draggable={false}
-                                    src={this.props.logo}
-                                    onClick={this.props.onClickLogo}
-                                />
-                            </div>
-                        ) : null}
                         {(this.props.canChangeLanguage) && (<div
                             className={classNames(styles.menuBarItem, styles.hoverable, styles.languageMenu)}
                         >
@@ -512,10 +505,20 @@ class MenuBar extends React.Component {
                                 onMouseUp={this.props.onClickTheme}
                             >
                                 <img
-                                    src={themeIcon}
+                                    src={moonIcon}
                                     width="24"
                                     height="24"
                                     draggable={false}
+                                    alt="Icon"
+                                    className={styles.moonIcon}
+                                />
+                                <img
+                                    src={sunIcon}
+                                    width="24"
+                                    height="24"
+                                    draggable={false}
+                                    alt="Icon"
+                                    className={styles.sunIcon}
                                 />
                             </div>
                         )}
@@ -579,10 +582,24 @@ class MenuBar extends React.Component {
                                 })}
                                 onMouseUp={this.props.onClickFile}
                             >
-                                <FormattedMessage
-                                    defaultMessage="File"
-                                    description="Text for file dropdown menu"
-                                    id="gui.menuBar.file"
+                                <img
+                                    src={fileIcon}
+                                    draggable={false}
+                                    width={20}
+                                    height={20}
+                                />
+                                <span className={styles.collapsibleLabel}>
+                                    <FormattedMessage
+                                        defaultMessage="File"
+                                        description="Text for file dropdown menu"
+                                        id="gui.menuBar.file"
+                                    />
+                                </span>
+                                <img
+                                    src={dropdownCaret}
+                                    draggable={false}
+                                    width={8}
+                                    height={5}
                                 />
                                 <MenuBarMenu
                                     className={classNames(styles.menuBarMenu)}
@@ -718,13 +735,25 @@ class MenuBar extends React.Component {
                             })}
                             onMouseUp={this.props.onClickEdit}
                         >
-                            <div className={classNames(styles.editMenu)}>
+                            <img
+                                src={editIcon}
+                                draggable={false}
+                                width={20}
+                                height={20}
+                            />
+                            <span className={styles.collapsibleLabel}>
                                 <FormattedMessage
                                     defaultMessage="Edit"
                                     description="Text for edit dropdown menu"
                                     id="gui.menuBar.edit"
                                 />
-                            </div>
+                            </span>
+                            <img
+                                src={dropdownCaret}
+                                draggable={false}
+                                width={8}
+                                height={5}
+                            />
                             <MenuBarMenu
                                 className={classNames(styles.menuBarMenu)}
                                 open={this.props.editMenuOpen}
@@ -818,6 +847,9 @@ class MenuBar extends React.Component {
                                     )}</CloudVariablesToggler>
                                 </MenuSection>
                                 <MenuSection>
+                                <MenuItem onClick={this.props.onClickExtManager}>
+                                        Alternative Extension Manager
+                                    </MenuItem>
                                     <MenuItem onClick={this.props.onClickSettings}>
                                         <FormattedMessage
                                             defaultMessage="Gameplay Settings"
@@ -833,27 +865,38 @@ class MenuBar extends React.Component {
                                 className={classNames(styles.menuBarItem, styles.hoverable)}
                                 onMouseUp={this.props.onClickAddonSettings}
                             >
-                                <div>
+                                <img
+                                    src={addonsIcon}
+                                    draggable={false}
+                                    width={20}
+                                    height={20}
+                                />
+                                <span className={styles.collapsibleLabel}>
                                     <FormattedMessage
-                                        // Note: this string is used by scratch-vm for the addons blocks category
                                         defaultMessage="Addons"
-                                        description="Menu bar item for addon settings"
+                                        description="Button to open addon settings"
                                         id="tw.menuBar.addons"
                                     />
-                                </div>
+                                </span>
                             </div>
                         )}
                         <div
                             className={classNames(styles.menuBarItem, styles.hoverable)}
                             onMouseUp={this.props.onClickSettings}
                         >
-                            <div>
-                                <FormattedMessage
-                                    defaultMessage="Settings"
-                                    description="Text for gameplay settings menu item"
-                                    id="pm.menuBar.gameplaySettings"
+                            <img
+                                    src={advancedIcon}
+                                    draggable={false}
+                                    width={20}
+                                    height={20}
                                 />
-                            </div>
+                                <span className={styles.collapsibleLabel}>
+                                    <FormattedMessage
+                                        defaultMessage="Advanced"
+                                        description="Button to open advanced settings menu"
+                                        id="tw.menuBar.advanced"
+                                    />
+                                </span>
                         </div>
                     </div>
                     <Divider className={classNames(styles.divider)} />
@@ -922,7 +965,7 @@ class MenuBar extends React.Component {
                     <div className={styles.menuBarItem}>
                         <a
                             className={styles.feedbackLink}
-                            href="https://penguinmod.com"
+                            href="https://electramod-home.vercel.app"
                             rel="noopener noreferrer"
                             target="_blank"
                         >
@@ -1012,6 +1055,7 @@ MenuBar.propTypes = {
     onClickSave: PropTypes.func,
     onClickSaveAsCopy: PropTypes.func,
     onClickSettings: PropTypes.func,
+    onClickExtManager: PropTypes.func,
     onClickErrors: PropTypes.func,
     onRequestCloseErrors: PropTypes.func,
     onLogOut: PropTypes.func,
@@ -1106,6 +1150,10 @@ const mapDispatchToProps = dispatch => ({
     onClickRestorePoints: () => dispatch(openRestorePointModal()),
     onClickSettings: () => {
         dispatch(openSettingsModal());
+        dispatch(closeEditMenu());
+    },
+    onClickExtManager: () => {
+        dispatch(openExtManagerModal());
         dispatch(closeEditMenu());
     },
     onSeeCommunity: () => dispatch(setPlayer(true))

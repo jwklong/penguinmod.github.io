@@ -67,6 +67,23 @@
     width: $language-selector-width;
 }
 
+[dir="ltr"] .language-menu-item {
+    padding-right: 1rem;
+}
+
+[dir="rtl"] .language-menu-item {
+    padding-left: 1rem;
+}
+
+.language-menu-item {
+    background-color: $motion-primary;
+}
+
+.language-submenu > ul {
+    max-height: calc(100vh - 5rem); /* Fallback if dvh not supported */
+    max-height: calc(100dvh - 5rem);
+}
+
 .menu-bar-item {
     display: flex;
     padding: 0 0.25rem;
@@ -231,8 +248,39 @@
     vertical-align: middle;
 }
 
+.collapsible-label {
+    margin: 0 .25rem;
+}
+
+@media only screen and (max-width: 1124px) {
+    .tutorials-label, .collapsible-label {
+        display: none;
+    }
+
+    .help-icon {
+        margin-right: 0;
+    }
+}
+
 /* tw: styles to override <a> styles */
 .menu-item-link {
     color: $ui-white !important;
     text-decoration: none;
+}
+
+.moon-icon {
+    display: block; /* Afficher l'icône de la lune par défaut */
+}
+
+.sun-icon {
+    display: none; /* Masquer l'icône du soleil par défaut */
+}
+
+/* Lorsque le thème est sombre */
+[theme="dark"] .moon-icon {
+    display: none; /* Masquer l'icône de la lune */
+}
+
+[theme="dark"] .sun-icon {
+    display: block; /* Afficher l'icône du soleil */
 }

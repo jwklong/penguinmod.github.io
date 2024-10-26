@@ -1230,7 +1230,7 @@ if (IsLocal || IsLiveTests) {
             featured: true
         },
         {
-            name: 'Debugging',
+            name: 'PM Sample Debugging',
             extensionId: 'jgDebugging',
             iconURL: defaultExtensionIcon,
             tags: ['penguinmod'],

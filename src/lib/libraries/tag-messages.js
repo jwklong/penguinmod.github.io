@@ -141,6 +141,16 @@ export default defineMessages({
         description: 'Tag for filtering a library for guns',
         id: 'gui.libraryTags.guns'
     },
+    othermods: {
+        defaultMessage: 'Other Mods',
+        description: 'Tag for filtering a library by Other Mods like Snail IDE etc...',
+        id: 'gui.libraryTags.othermods'
+    },
+    onyxmod: {
+        defaultMessage: 'OnyxMod',
+        description: 'Tag for filtering a library by OnyxMod',
+        id: 'gui.libraryTags.onyxmod'
+    },
     penguinmod: {
         defaultMessage: 'PenguinMod',
         description: 'Tag for filtering a library by PenguinMod',
