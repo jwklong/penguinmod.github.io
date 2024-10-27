@@ -6,7 +6,7 @@ import log from '../lib/log';
 import localforage from 'localforage';
 import CustomExtensionModalComponent from '../components/tw-custom-extension-modal/custom-extension-modal.jsx';
 import {closeCustomExtensionModal} from '../reducers/modals';
-import {manuallyTrustExtension, isTrustedExtension} from './tw-security-manager.jsx';
+import {manuallyTrustExtension, isTrustedExtension, isTrustedExtensionOrigin} from './tw-security-manager.jsx';
 
 const generateRandomId = () => {
     const randomChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -125,7 +125,7 @@ class CustomExtensionModal extends React.Component {
         this.handleClose();
         try {
             const url = await this.getExtensionURL();
-            if (this.state.type !== 'url' && this.state.unsandboxed) {
+            if (this.state.unsandboxed) {
                 manuallyTrustExtension(url);
             }
             if (this.props.swapId) {
@@ -220,12 +220,15 @@ class CustomExtensionModal extends React.Component {
     }
     isUnsandboxed () {
         if (this.state.type === 'url') {
-            return isTrustedExtension(this.state.url);
+            if (isTrustedExtensionOrigin(this.state.url)) return true;
         }
         return this.state.unsandboxed;
     }
     canChangeUnsandboxed () {
-        return this.state.type !== 'url';
+        if (this.state.type === "url" && isTrustedExtensionOrigin(this.state.url)) {
+            return false;
+        }
+        return true;
     }
     handleChangeUnsandboxed (e) {
         this.setState({

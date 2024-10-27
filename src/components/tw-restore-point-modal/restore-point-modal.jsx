@@ -167,6 +167,7 @@ const RestorePointModal = props => (
                                 key={restorePoint.id}
                                 onClickDelete={props.onClickDelete}
                                 onClickLoad={props.onClickLoad}
+                                onClickExport={props.onClickExport}
                                 {...restorePoint}
                             />
                         ))}
@@ -222,6 +223,7 @@ RestorePointModal.propTypes = {
     onClickDelete: PropTypes.func.isRequired,
     onClickDeleteAll: PropTypes.func.isRequired,
     onClickLoad: PropTypes.func.isRequired,
+    onClickExport: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
     totalSize: PropTypes.number.isRequired,
     restorePoints: PropTypes.arrayOf(PropTypes.shape({})),

@@ -16,7 +16,8 @@ class RestorePoint extends React.Component {
         super(props);
         bindAll(this, [
             'handleClickDelete',
-            'handleClickLoad'
+            'handleClickLoad',
+            'handleClickExport'
         ]);
         this.state = {
             thumbnail: null,
@@ -73,6 +74,11 @@ class RestorePoint extends React.Component {
         this.props.onClickLoad(this.props.id);
     }
 
+    handleClickExport (e) {
+        e.stopPropagation();
+        this.props.onClickExport(this.props.id);
+    }
+
     render () {
         const createdDate = new Date(this.props.created * 1000);
         return (
@@ -125,6 +131,13 @@ class RestorePoint extends React.Component {
                                 n: Object.keys(this.props.assets).length
                             }}
                         />
+
+                        <button
+                            className={styles.exportButton}
+                            onClick={this.handleClickExport}
+                        >
+                            Export
+                        </button>
                     </div>
                 </div>
 
@@ -151,7 +164,8 @@ RestorePoint.propTypes = {
     thumbnailSize: PropTypes.number.isRequired,
     assets: PropTypes.shape({}).isRequired, // Record<string, number>
     onClickDelete: PropTypes.func.isRequired,
-    onClickLoad: PropTypes.func.isRequired
+    onClickLoad: PropTypes.func.isRequired,
+    onClickExport: PropTypes.func.isRequired
 };
 
 export default RestorePoint;

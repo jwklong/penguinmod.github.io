@@ -122,6 +122,16 @@
     background-color: $ui-black-transparent;
 }
 
+.export-button {
+    margin: 0 4px;
+    padding: 2px 4px;
+    background-color: $data-primary;
+    border: 1px solid $ui-black-transparent;
+    border-radius: 0.25rem;
+    font-size: small;
+    color: $ui-white;
+}
+
 .disabled {
     padding: 0.5rem;
     border-radius: 0.5rem;

@@ -9,6 +9,7 @@ import {LoadingStates, getIsShowingProject, onLoadedProject, requestProjectUploa
 import {setFileHandle} from '../reducers/tw';
 import TWRestorePointModal from '../components/tw-restore-point-modal/restore-point-modal.jsx';
 import RestorePointAPI from '../lib/tw-restore-point-api';
+import downloadBlob from '../lib/download-blob';
 import log from '../lib/log';
 
 /* eslint-disable no-alert */
@@ -49,10 +50,12 @@ class TWRestorePointManager extends React.Component {
             'handleClickDelete',
             'handleClickDeleteAll',
             'handleChangeInterval',
-            'handleClickLoad'
+            'handleClickLoad',
+            'handleClickExport'
         ]);
         this.state = {
             loading: true,
+            exporting: false,
             totalSize: 0,
             restorePoints: [],
             error: null,
@@ -161,6 +164,9 @@ class TWRestorePointManager extends React.Component {
         if (!this.canLoadProject()) {
             return;
         }
+        if (this.state.exporting) {
+            return;
+        }
 
         this.props.onCloseModal();
         this.props.onStartLoadingRestorePoint(this.props.loadingState);
@@ -178,6 +184,41 @@ class TWRestorePointManager extends React.Component {
                     error
                 }));
                 this.props.onFinishLoadingRestorePoint(false, this.props.loadingState);
+            });
+    }
+
+    handleClickExport (id) {
+        if (!this.props.isShowingProject) {
+            // this might break the state machine if we dont do this? not sure so we won't risk it & just return
+            return;
+        }
+        if (this.state.exporting) {
+            return;
+        }
+
+        this.setState({
+            exporting: true
+        });
+        
+        // specifically add true so dontLoadProject is true
+        RestorePointAPI.loadRestorePoint(this.props.vm, id, true)
+            .then((arrayBuffer) => {
+                this.setState({
+                    exporting: false
+                });
+
+                const blob = new Blob([arrayBuffer], { type: "application/x.scratch.sb3" });
+                downloadBlob("restore-point.pmp", blob);
+            })
+            .catch(error => {
+                log.error(error);
+                alert(this.props.intl.formatMessage(messages.loadError, {
+                    error
+                }));
+                
+                this.setState({
+                    exporting: false
+                });
             });
     }
 
@@ -282,6 +323,7 @@ class TWRestorePointManager extends React.Component {
                     onClickDelete={this.handleClickDelete}
                     onClickDeleteAll={this.handleClickDeleteAll}
                     onClickLoad={this.handleClickLoad}
+                    onClickExport={this.handleClickExport}
                     interval={this.state.interval}
                     onChangeInterval={this.handleChangeInterval}
                     isLoading={this.state.loading}
