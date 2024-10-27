@@ -1,4 +1,4 @@
-scratch-gui modified for use in [TurboWarp](https://turbowarp.org/) then modified for use in [PenguinMod](https://studio.penguinmod.com) 😀
+scratch-gui modified for use in [TurboWarp](https://turbowarp.org/), modified for use in [PenguinMod](https://studio.penguinmod.com) and then modified for use in [OnyxMod](https://onyx-mod.github.io) 😀
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/PenguinMod/penguinmod.github.io/)
 ## Setup
 
