@@ -18,7 +18,7 @@ import Divider from '../divider/divider.jsx';
 import LanguageSelector from '../../containers/language-selector.jsx';
 import ProjectWatcher from '../../containers/project-watcher.jsx';
 import MenuBarMenu from './menu-bar-menu.jsx';
-import { MenuItem, MenuSection } from '../menu/menu.jsx';
+import { MenuItem, MenuSection, Submenu } from '../menu/menu.jsx';
 import ProjectTitleInput from './project-title-input.jsx';
 import AuthorInfo from './author-info.jsx';
 import SB3Downloader from '../../containers/sb3-downloader.jsx';
@@ -52,6 +52,9 @@ import {
     openFileMenu,
     closeFileMenu,
     fileMenuOpen,
+    openSettingsMenu,
+    closeSettingsMenu,
+    settingsMenuOpen,
     openEditMenu,
     closeEditMenu,
     editMenuOpen,
@@ -79,10 +82,15 @@ import errorIcon from './tw-error.svg';
 import moonIcon from './tw-moon.svg';
 import sunIcon from './tw-sun.svg';
 
+import settingsIcon from './icon--settings.svg';
 import fileIcon from './icon--file.svg';
 import editIcon from './icon--edit.svg';
 import addonsIcon from './addons.svg';
 import advancedIcon from './tw-advanced.svg';
+
+import {selectLocale} from '../../reducers/locales.js';
+import locales from '@turbowarp/scratch-l10n';
+import check from './check.svg';
 
 import scratchLogo from './scratch-logo.svg';
 
@@ -163,6 +171,7 @@ MenuItemTooltip.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     id: PropTypes.string,
+    currentLocale: PropTypes.string,
     isRtl: PropTypes.bool
 };
 
@@ -202,6 +211,7 @@ class MenuBar extends React.Component {
     constructor(props) {
         super(props);
         bindAll(this, [
+            'handleClickTheme',
             'handleClickSeeInside',
             'handleClickNew',
             'handleClickNewWindow',
@@ -225,6 +235,12 @@ class MenuBar extends React.Component {
     componentWillUnmount() {
         document.removeEventListener('keydown', this.handleKeyPress);
     }
+
+    handleClickTheme() {
+        this.props.onClickTheme();
+        this.props.onRequestCloseSettings();
+    }
+
     handleClickNew() {
         // if the project is dirty, and user owns the project, we will autosave.
         // but if they are not logged in and can't save, user should consider
@@ -235,34 +251,42 @@ class MenuBar extends React.Component {
             this.props.intl.formatMessage(sharedMessages.replaceProjectWarning)
         );
         this.props.onRequestCloseFile();
+        this.props.onRequestCloseSettings();
         if (readyToReplaceProject) {
             this.props.onClickNew(this.props.canSave && this.props.canCreateNew);
         }
         this.props.onRequestCloseFile();
+        this.props.onRequestCloseSettings();
     }
     handleClickNewWindow() {
         this.props.onClickNewWindow();
         this.props.onRequestCloseFile();
+        this.props.onRequestCloseSettings();
     }
     handleClickRemix() {
         this.props.onClickRemix();
         this.props.onRequestCloseFile();
+        this.props.onRequestCloseSettings();
     }
     handleClickSave() {
         this.props.onClickSave();
         this.props.onRequestCloseFile();
+        this.props.onRequestCloseSettings();
     }
     handleClickSaveAsCopy() {
         this.props.onClickSaveAsCopy();
         this.props.onRequestCloseFile();
+        this.props.onRequestCloseSettings();
     }
     handleClickPackager() {
         this.props.onClickPackager();
         this.props.onRequestCloseFile();
+        this.props.onRequestCloseSettings();
     }
     handleClickRestorePoints() {
         this.props.onClickRestorePoints();
         this.props.onRequestCloseFile();
+        this.props.onRequestCloseSettings();
     }
     handleClickSeeCommunity(waitForUpdate) {
         if (this.props.shouldSaveBeforeTransition()) {
@@ -479,49 +503,6 @@ class MenuBar extends React.Component {
             >
                 <div className={styles.mainMenu}>
                     <div className={styles.fileGroup}>
-                        {(this.props.canChangeLanguage) && (<div
-                            className={classNames(styles.menuBarItem, styles.hoverable, styles.languageMenu)}
-                        >
-                            <div>
-                                <img
-                                    className={styles.languageIcon}
-                                    src={languageIcon}
-                                    width="24"
-                                    height="24"
-                                />
-                                <img
-                                    className={styles.languageCaret}
-                                    src={dropdownCaret}
-                                    width="8"
-                                    height="5"
-                                />
-                            </div>
-                            <LanguageSelector label={this.props.intl.formatMessage(ariaMessages.language)} />
-                        </div>)}
-                        {/* tw: theme toggler */}
-                        {this.props.onClickTheme && (
-                            <div
-                                className={classNames(styles.menuBarItem, styles.hoverable)}
-                                onMouseUp={this.props.onClickTheme}
-                            >
-                                <img
-                                    src={moonIcon}
-                                    width="24"
-                                    height="24"
-                                    draggable={false}
-                                    alt="Icon"
-                                    className={styles.moonIcon}
-                                />
-                                <img
-                                    src={sunIcon}
-                                    width="24"
-                                    height="24"
-                                    draggable={false}
-                                    alt="Icon"
-                                    className={styles.sunIcon}
-                                />
-                            </div>
-                        )}
                         {/* tw: display compile errors */}
                         {this.props.compileErrors.length > 0 && <div>
                             <div
@@ -575,6 +556,132 @@ class MenuBar extends React.Component {
                                 </MenuBarMenu>
                             </div>
                         </div>}
+                        {(this.props.canManageFiles) && (
+                            <div
+                                className={classNames(styles.menuBarItem, styles.hoverable, {
+                                    [styles.active]: this.props.settingsMenuOpen
+                                })}
+                                onMouseUp={this.props.onClickBSettings}
+                            >
+                                <img
+                                    src={settingsIcon}
+                                    draggable={false}
+                                    width={20}
+                                    height={20}
+                                    style={{position: 'relative', left: this.props.isRtl ? '4px' : '-4px'}}
+                                />
+                                <span
+                                    className={`${styles.collapsibleLabel}`} 
+                                    style={{position: 'relative', left: this.props.isRtl ? '4px' : '-4px'}}
+                                >
+                                    <FormattedMessage
+                                        defaultMessage="Settings"
+                                        description="Settings menu"
+                                        id="gui.menuBar.settings"
+                                    />
+                                </span>
+                                <img
+                                    src={dropdownCaret}
+                                    draggable={false}
+                                    width={8}
+                                    height={5}
+                                />
+                                <MenuBarMenu
+                                    className={classNames(styles.menuBarMenu)}
+                                    open={this.props.settingsMenuOpen}
+                                    place={this.props.isRtl ? 'left' : 'right'}
+                                    onRequestClose={this.props.onRequestCloseSettings}
+                                >
+                                    <MenuItem>
+                                        <img
+                                            width="24"
+                                            height="24"
+                                            src={languageIcon}
+                                            style={{position: 'relative', top: '7px'}}
+                                            draggable={false}
+                                        />
+                                        <span style={{position: 'relative', left: this.props.isRtl ? '-7px' : '7px'}}>
+                                            <FormattedMessage
+                                                defaultMessage="Language"
+                                                description="Language sub-menu"
+                                                id="gui.menuBar.language"
+                                            />
+                                        </span>
+                                        <img
+                                            className={styles.expandCaret}
+                                            src={dropdownCaret}
+                                            draggable={false}
+                                            style={{position: 'relative', float: this.props.isRtl ? 'left' : 'right', top: '15px'}}
+                                        />
+                                        <Submenu
+                                            className={styles.languageSubmenu}
+                                            place={this.props.isRtl ? 'left' : 'right'}
+                                        >
+                                            {
+                                                Object.keys(locales)
+                                                    .map(locale => (
+                                                        <MenuItem
+                                                            key={locale}
+                                                            className={styles.languageMenuItem}
+                                                            // eslint-disable-next-line react/jsx-no-bind
+                                                            onClick={() => this.props.onChangeLanguage(locale)}
+                                                        >
+                                                            <img
+                                                                className={classNames(styles.check, {
+                                                                    [styles.selected]: this.props.currentLocale === locale
+                                                                })}
+                                                                src={check}
+                                                                draggable={false}
+                                                                style={{opacity: this.props.currentLocale === locale ? '1' : '0'}}
+                                                            />
+                                                            <span style={{position: 'relative', left: this.props.isRtl ? '-4px' : '4px'}}>{locales[locale].name}</span>
+                                                        </MenuItem>
+                                                    ))
+                                            }
+                                        </Submenu>
+                                    </MenuItem>
+                                    <MenuItem
+                                        isRtl={this.props.isRtl}
+                                        onClick={this.handleClickTheme}
+                                    >
+                                        <div className={styles.onlyLight}>
+                                            <img
+                                                src={moonIcon}
+                                                width="24"
+                                                height="24"
+                                                draggable={false}
+                                                alt="Icon"
+                                                style={{position: 'relative', top: '7px'}}
+                                            />
+                                            <span style={{position: 'relative', left: this.props.isRtl ? '-7px' : '7px'}}>
+                                                <FormattedMessage
+                                                    defaultMessage="Switch To Dark Mode"
+                                                    description="Menu item to change color scheme to light (it is currently light)"
+                                                    id="tw.darkMode"
+                                                />
+                                            </span>
+                                        </div>
+                                        <div className={styles.onlyDark}>
+                                            <img
+                                                src={sunIcon}
+                                                width="24"
+                                                height="24"
+                                                draggable={false}
+                                                alt="Icon"
+                                                style={{position: 'relative', top: '7px'}}
+                                            />
+                                            <span style={{position: 'relative', left: this.props.isRtl ? '-7px' : '7px'}}>
+                                                <FormattedMessage
+                                                    defaultMessage="Switch To Light Mode"
+                                                    description="Menu item to change color scheme to dark (it is currently dark)"
+                                                    id="tw.lightMode"
+                                                />
+                                            </span>
+                                        </div>
+                                    </MenuItem>
+                                </MenuBarMenu>
+                            </div>
+                        )}
                         {(this.props.canManageFiles) && (
                             <div
                                 className={classNames(styles.menuBarItem, styles.hoverable, {
@@ -993,6 +1100,8 @@ class MenuBar extends React.Component {
 }
 
 MenuBar.propTypes = {
+    currentLocale: PropTypes.string,
+    onChangeLanguage: PropTypes.func,
     enableSeeInside: PropTypes.bool,
     onClickSeeInside: PropTypes.func,
     aboutMenuOpen: PropTypes.bool,
@@ -1018,6 +1127,7 @@ MenuBar.propTypes = {
     confirmReadyToReplaceProject: PropTypes.func,
     editMenuOpen: PropTypes.bool,
     enableCommunity: PropTypes.bool,
+    settingsMenuOpen: PropTypes.bool,
     fileMenuOpen: PropTypes.bool,
     handleSaveProject: PropTypes.func,
     intl: intlShape,
@@ -1046,6 +1156,7 @@ MenuBar.propTypes = {
     onClickRestorePoints: PropTypes.func,
     onClickEdit: PropTypes.func,
     onClickFile: PropTypes.func,
+    onClickBSettings: PropTypes.func,
     onClickLanguage: PropTypes.func,
     onClickLogin: PropTypes.func,
     onClickLogo: PropTypes.func,
@@ -1067,6 +1178,7 @@ MenuBar.propTypes = {
     onRequestCloseAccount: PropTypes.func,
     onRequestCloseEdit: PropTypes.func,
     onRequestCloseFile: PropTypes.func,
+    onRequestCloseSettings: PropTypes.func,
     onRequestCloseLanguage: PropTypes.func,
     onRequestCloseLogin: PropTypes.func,
     onSeeCommunity: PropTypes.func,
@@ -1102,8 +1214,10 @@ const mapStateToProps = (state, ownProps) => {
         authorUsername: state.scratchGui.tw.author.username,
         compileErrors: state.scratchGui.tw.compileErrors,
         fileMenuOpen: fileMenuOpen(state),
+        settingsMenuOpen: settingsMenuOpen(state),
         editMenuOpen: editMenuOpen(state),
         isPlayerOnly: state.scratchGui.mode.isPlayerOnly,
+        currentLocale: state.locales.locale,
         isRtl: state.locales.isRtl,
         isUpdating: getIsUpdating(loadingState),
         isShowingProject: getIsShowingProject(loadingState),
@@ -1123,6 +1237,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
+    onChangeLanguage: locale => {
+        dispatch(selectLocale(locale));
+    },
     onClickSeeInside: () => dispatch(setPlayer(false)),
     autoUpdateProject: () => dispatch(autoUpdateProject()),
     onOpenTipLibrary: () => dispatch(openTipsLibrary()),
@@ -1130,6 +1247,8 @@ const mapDispatchToProps = dispatch => ({
     onRequestCloseAccount: () => dispatch(closeAccountMenu()),
     onClickFile: () => dispatch(openFileMenu()),
     onRequestCloseFile: () => dispatch(closeFileMenu()),
+    onRequestCloseSettings: () => dispatch(closeSettingsMenu()),
+    onClickBSettings: () => dispatch(openSettingsMenu()),
     onClickEdit: () => dispatch(openEditMenu()),
     onRequestCloseEdit: () => dispatch(closeEditMenu()),
     onClickLanguage: () => dispatch(openLanguageMenu()),

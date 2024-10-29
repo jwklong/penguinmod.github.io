@@ -75,10 +75,6 @@
     padding-left: 1rem;
 }
 
-.language-menu-item {
-    background-color: $motion-primary;
-}
-
 .language-submenu > ul {
     max-height: calc(100vh - 5rem); /* Fallback if dvh not supported */
     max-height: calc(100dvh - 5rem);
@@ -268,19 +264,29 @@
     text-decoration: none;
 }
 
-.moon-icon {
-    display: block; /* Afficher l'icône de la lune par défaut */
+.onlyLight {
+    display: block; 
 }
 
-.sun-icon {
-    display: none; /* Masquer l'icône du soleil par défaut */
+.onlyDark {
+    display: none; 
 }
 
-/* Lorsque le thème est sombre */
-[theme="dark"] .moon-icon {
-    display: none; /* Masquer l'icône de la lune */
+/* When theme is Dark */
+[theme="dark"] .onlyLight {
+    display: none; 
+    flex: 1;
 }
 
-[theme="dark"] .sun-icon {
-    display: block; /* Afficher l'icône du soleil */
+[theme="dark"] .onlyDark {
+    display: block; 
+    flex: 1;
+}
+
+.expand-caret {
+    transform: rotate(-90deg);
+}
+
+[dir="rtl"] .expand-caret {
+    transform: rotate(90deg);
 }
