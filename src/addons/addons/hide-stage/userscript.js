@@ -11,6 +11,9 @@ export default async function ({ addon, console, msg }) {
     document.body.classList.add("sa-stage-hidden-outer");
     // Inner class is applied to body wrapper so that it won't affect the project page.
     bodyWrapper.classList.add("sa-stage-hidden");
+    hideStageButton.setAttribute("aria-pressed", true);
+    if (smallStageButton) smallStageButton.setAttribute("aria-pressed", false);
+    if (largeStageButton) largeStageButton.setAttribute("aria-pressed", false);
     hideStageButton.classList.remove(addon.tab.scratchClass("stage-header_stage-button-toggled-off"));
     window.dispatchEvent(new Event("resize")); // resizes the code area and paint editor canvas
   }
@@ -20,6 +23,7 @@ export default async function ({ addon, console, msg }) {
     if (!bodyWrapper) return;
     document.body.classList.remove("sa-stage-hidden-outer");
     bodyWrapper.classList.remove("sa-stage-hidden");
+    hideStageButton.setAttribute("aria-pressed", false);
     hideStageButton.classList.add(addon.tab.scratchClass("stage-header_stage-button-toggled-off"));
     window.dispatchEvent(new Event("resize")); // resizes the code area and paint editor canvas
   }
@@ -27,7 +31,7 @@ export default async function ({ addon, console, msg }) {
   addon.self.addEventListener("disabled", () => unhideStage());
 
   while (true) {
-    const stageControls = await addon.tab.waitForElement("[class*='stage-header_stage-size-toggle-group_']", {
+    const stageControls = await addon.tab.waitForElement("[class*='stage-header_stage-size-toggle-group_'] [class*='toggle-buttons_row_']", {
       markAsSeen: true,
       reduxCondition: (state) => !state.scratchGui.mode.isPlayerOnly,
     });
@@ -38,9 +42,8 @@ export default async function ({ addon, console, msg }) {
     hideStageButton = Object.assign(document.createElement("div"), {
       role: "button",
       className: addon.tab.scratchClass(
-        "button_outlined-button",
+        "toggle-buttons_button",
         "stage-header_stage-button",
-        "stage-header_stage-button-first",
         { others: "sa-hide-stage-button" }
       ),
     });
