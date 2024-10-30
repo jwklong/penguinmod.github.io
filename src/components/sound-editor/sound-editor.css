@@ -83,13 +83,20 @@ $border-radius: 0.25rem;
     border: 1px solid $ui-black-transparent;
     cursor: pointer;
     font-size: 0.85rem;
-    transition: 0.2s;
     user-select: none;
     margin: 0px;
 }
 [theme="dark"] .button {
     background-color: $ui-primary;
 }
+
+.button:active {
+    background: $motion-transparent;
+}
+.button:focus {
+    border-color: $motion-tertiary;
+}
+
 
 .button > img {
     flex-grow: 1;

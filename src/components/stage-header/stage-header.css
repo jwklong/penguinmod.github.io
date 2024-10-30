@@ -46,6 +46,12 @@
     display: flex;
 }
 
+.stage-size-row > *, .unselect-wrapper {
+    /* Use a white background so semi-transparent selection states look correct */
+    border-radius: $form-radius;
+}
+
+
 .stage-size-toggle-group {
     display: flex;
 }
