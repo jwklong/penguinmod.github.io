@@ -52,6 +52,10 @@
     border-radius: $form-radius;
 }
 
+[theme="dark"] .stage-size-row > *, .unselect-wrapper {
+    background-color: $ui-secondary;
+}
+
 
 .stage-size-toggle-group {
     display: flex;

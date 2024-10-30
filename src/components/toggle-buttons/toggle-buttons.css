@@ -25,7 +25,11 @@
 .button > img {
     display: block;
     transition: transform 0.1s;
-    filter: grayscale(100%);
+    filter: var(--editorDarkMode-accent-desaturateFilter, saturate(0));
+}
+
+[theme="dark"] .button > img {
+    filter: brightness(0) invert(1);
 }
 
 .button:not(:last-child) {
