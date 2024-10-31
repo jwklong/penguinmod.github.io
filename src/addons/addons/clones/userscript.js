@@ -8,15 +8,16 @@ export default async function ({ addon, console, msg }) {
     reduxCondition: (state) => !state.scratchGui.mode.isPlayerOnly,
   });
 
-  const smallStageButton = stageControls.firstChild;
-  const largeStageButton = stageControls.lastChild;
-
   if (addon.tab.redux.state && addon.tab.redux.state.scratchGui.stageSize.stageSize === "small") {
     document.body.classList.add("sa-clones-small");
   }
   document.addEventListener(
     "click",
     (e) => {
+      const hasHideStage = document.querySelector("[class*='sa-hide-stage-button']");
+      const smallStageButton = hasHideStage ? stageControls.children[1] : stageControls.firstChild;
+      const largeStageButton = stageControls.lastChild;
+      
       if (smallStageButton.contains(e.target)) {
         document.body.classList.add("sa-clones-small");
       } else if (largeStageButton.contains(e.target)) {

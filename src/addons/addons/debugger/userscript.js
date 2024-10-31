@@ -536,18 +536,24 @@ export default async function ({ addon, console, msg }) {
   }
   setActiveTab(allTabs[0]);
 
+  const stageControls = await addon.tab.waitForElement("[class*='stage-header_stage-size-toggle-group_'] [class*='toggle-buttons_row_']", {
+    markAsSeen: true,
+    reduxCondition: (state) => !state.scratchGui.mode.isPlayerOnly,
+  });
+
   if (addon.tab.redux.state && addon.tab.redux.state.scratchGui.stageSize.stageSize === "small") {
     document.body.classList.add("sa-debugger-small");
   }
   document.addEventListener(
     "click",
     (e) => {
-      if (e.target.closest("[class*='stage-header_stage-button-first']:not(.sa-hide-stage-button)")) {
+      const hasHideStage = document.querySelector("[class*='sa-hide-stage-button']");
+      const smallStageButton = hasHideStage ? stageControls.children[1] : stageControls.firstChild;
+      const largeStageButton = stageControls.lastChild;
+
+      if (smallStageButton.contains(e.target)) {
         document.body.classList.add("sa-debugger-small");
-      } else if (
-        e.target.closest("[class*='stage-header_stage-button-last']") ||
-        e.target.closest(".sa-hide-stage-button")
-      ) {
+      } else if (largeStageButton.contains(e.target)) {
         document.body.classList.remove("sa-debugger-small");
       }
     },
