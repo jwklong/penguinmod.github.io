@@ -25,6 +25,14 @@ export default async function ({ addon, console, msg }) {
     bodyWrapper.classList.remove("sa-stage-hidden");
     hideStageButton.setAttribute("aria-pressed", false);
     hideStageButton.classList.add(addon.tab.scratchClass("stage-header_stage-button-toggled-off"));
+    if (e) {
+      const clickedButton = e.target.closest("button");
+      if (clickedButton) clickedButton.setAttribute("aria-pressed", true);
+    } else if (addon.tab.redux.state) {
+      const selectedStageSize = addon.tab.redux.state.scratchGui.stageSize.stageSize;
+      if (smallStageButton) smallStageButton.setAttribute("aria-pressed", selectedStageSize === "small");
+      if (largeStageButton) largeStageButton.setAttribute("aria-pressed", selectedStageSize === "large");
+    }
     window.dispatchEvent(new Event("resize")); // resizes the code area and paint editor canvas
   }
 
@@ -43,7 +51,6 @@ export default async function ({ addon, console, msg }) {
       role: "button",
       className: addon.tab.scratchClass(
         "toggle-buttons_button",
-        "stage-header_stage-button",
         { others: "sa-hide-stage-button" }
       ),
     });

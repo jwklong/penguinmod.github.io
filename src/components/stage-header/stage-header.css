@@ -49,7 +49,6 @@
 .stage-size-row > *, .unselect-wrapper {
     /* Use a white background so semi-transparent selection states look correct */
     background-color: $ui-white;
-    border-radius: $form-radius;
 }
 
 [theme="dark"] .stage-size-row > *, .unselect-wrapper {

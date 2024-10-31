@@ -54,15 +54,23 @@ export default async function ({ addon, console }) {
     display: "flex",
   });
 
+  const stageControls = await addon.tab.waitForElement("[class*='stage-header_stage-size-toggle-group_'] [class*='toggle-buttons_row_']", {
+    markAsSeen: true,
+    reduxCondition: (state) => !state.scratchGui.mode.isPlayerOnly,
+  });
+
+  const smallStageButton = stageControls.firstChild;
+  const largeStageButton = stageControls.lastChild;
+
   if (addon.tab.redux.state && addon.tab.redux.state.scratchGui.stageSize.stageSize === "small") {
     document.body.classList.add("sa-vol-slider-small");
   }
   document.addEventListener(
     "click",
     (e) => {
-      if (e.target.closest("[class*='stage-header_stage-button-first']")) {
+      if (smallStageButton.contains(e.target)) {
         document.body.classList.add("sa-vol-slider-small");
-      } else if (e.target.closest("[class*='stage-header_stage-button-last']")) {
+      } else if (largeStageButton.contains(e.target)) {
         document.body.classList.remove("sa-vol-slider-small");
       }
     },
