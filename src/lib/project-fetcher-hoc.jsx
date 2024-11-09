@@ -131,6 +131,17 @@ function protobufToJson(buffer) {
         }
 
         for (const block in target.blocks) {
+            if (target.blocks[block].is_variable_reporter) {
+                newTarget.blocks[block] = [
+                    target.blocks[block].varReporterBlock.first_num,
+                    target.blocks[block].varReporterBlock.name,
+                    target.blocks[block].varReporterBlock.id,
+                    target.blocks[block].varReporterBlock.second_num,
+                    target.blocks[block].varReporterBlock.third_num,
+                ]
+                continue;
+            }
+            
             newTarget.blocks[block] = {
                 opcode: target.blocks[block].opcode,
                 next: target.blocks[block].next || null,
@@ -155,6 +166,7 @@ function protobufToJson(buffer) {
                     edited: target.blocks[block].mutation.edited,
                     optype: target.blocks[block].mutation.optype,
                     color: target.blocks[block].mutation.color,
+                    hasnext: target.blocks[block].next ? true : false,
                     children: []
                 }
             }

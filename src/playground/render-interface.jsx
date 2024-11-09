@@ -307,7 +307,8 @@ class Interface extends React.Component {
         const projectReleaseYear = extraProjectInfo.releaseDate.getFullYear();
         const projectReleaseMonth = monthNames[extraProjectInfo.releaseDate.getMonth()];
         const projectReleaseDay = addNumberSuffix(extraProjectInfo.releaseDate.getDate());
-        const projectReleaseHour = (extraProjectInfo.releaseDate.getHours() % 12) + 1;
+        const hour24 = extraProjectInfo.releaseDate.getHours();
+        const projectReleaseHour = hour24 === 0 ? 12 : (hour24 > 12 ? hour24 - 12 : hour24);
         const projectReleaseHalf = extraProjectInfo.releaseDate.getHours() > 11
             ? 'PM'
             : 'AM';

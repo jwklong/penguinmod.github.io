@@ -25,15 +25,6 @@ const fromHardcodedNamed = username => ({
     text: username
 });
 
-const fromHardcodedDiscord = async userId => {
-    const res = await fetch(`https://pmupdatereader.jeremygamer13.repl.co/user/${userId}`);
-    const json = await res.json();
-    return {
-        image: json.avatarURL,
-        text: json.username
-    };
-};
-
 const addonDevelopers = [
     {
         userId: '34018398',
@@ -136,20 +127,73 @@ const pmDevelopers = [
 ].map(fromHardcodedGithub);
 
 const pmPullRequestDevelopers = [ // these people made a PR that got merged, or got a dev to add something they made
-    'NexusKitten',
-    'LilyMakesThings',
-    'MikeDev101',
-    'kokofixcomputers',
-    'PPPDUD',
-    'qbjl',
-    'minidogg',
-    'concertalyis',
-    'Steve0Greatness',
-    'ilikecoding-197',
-    'NotEmbin',
-    'NotCryptid' // rx or ry single fix
+    {
+        text: 'NexusKitten',
+        image: `https://github.com/NexusKitten.png`,
+        href: `https://github.com/NexusKitten/`,
+    },
+    {
+        text: 'LilyMakesThings',
+        image: `https://github.com/LilyMakesThings.png`,
+        href: `https://github.com/LilyMakesThings/`,
+    },
+    {
+        text: 'MikeDev101',
+        image: `https://github.com/MikeDev101.png`,
+        href: `https://github.com/MikeDev101/`,
+    },
+    {
+        text: 'kokofixcomputers',
+        image: `https://github.com/kokofixcomputers.png`,
+        href: `https://github.com/kokofixcomputers/`,
+    },
+    {
+        text: 'PPPDUD',
+        image: `https://github.com/PPPDUD.png`,
+        href: `https://github.com/PPPDUD/`,
+    },
+    {
+        text: 'qbjl',
+        image: `https://github.com/qbjl.png`,
+        href: `https://github.com/qbjl/`,
+    },
+    {
+        text: 'minidogg',
+        image: `https://github.com/minidogg.png`,
+        href: `https://github.com/minidogg/`,
+    },
+    {
+        text: 'concertalyis',
+        image: `https://github.com/concertalyis.png`,
+        href: `https://github.com/concertalyis/`,
+    },
+    {
+        text: 'Steve0Greatness',
+        image: `https://github.com/Steve0Greatness.png`,
+        href: `https://github.com/Steve0Greatness/`,
+    },
+    {
+        text: 'ilikecoding-197',
+        image: `https://github.com/ilikecoding-197.png`,
+        href: `https://github.com/ilikecoding-197/`,
+    },
+    {
+        text: 'NotEmbin',
+        image: `https://github.com/NotEmbin.png`,
+        href: `https://github.com/NotEmbin/`,
+    },
+    {  // rx or ry single fix
+        text: 'NotCryptid',
+        image: `https://penguinmod.com/unknown_user.png`,
+        href: `https://github.com/NotCryptid/`,
+    },
+    {
+        text: 'DogeisCut',
+        image: `https://github.com/DogeisCut.png`,
+        href: `https://github.com/Dogeiscut/`,
+    },
     // list could be missing some people, but theres not really a way to tell
-].map(fromHardcodedGithub);
+];
 
 const pmApiDevelopers = [
     'JeremyGamer13',
@@ -160,7 +204,6 @@ const pmApiDevelopers = [
     'enderhacker'
 ].map(fromHardcodedGithub);
 
-// todo: should translators be only named or...?
 const pmTranslators = [
     {
         text: 'kolikiscool',
@@ -337,9 +380,89 @@ const pmTranslators = [
     },
 ];
 
-const logoArtists = Promise.all([
-    '593554048188416001'
-].map(fromHardcodedDiscord));
+const pmCostumeSubmittors = [
+    // github accounts
+    {
+        text: 'budc123',
+        image: `https://github.com/budc123.png`,
+        href: `https://github.com/budc123/`,
+    },
+    {
+        text: 'concertalyis',
+        image: `https://github.com/concertalyis.png`,
+        href: `https://github.com/concertalyis/`,
+    },
+    {
+        text: 'WojtekCodesToday',
+        image: `https://github.com/WojtekCodesToday.png`,
+        href: `https://github.com/WojtekCodesToday/`,
+    },
+    // unknown
+    {
+        text: 'maroonmball',
+        image: `https://penguinmod.com/unknown_user.png`,
+        href: "https://studio.penguinmod.com/credits.html#",
+    },
+    {
+        text: 'eviepepsi',
+        image: `https://penguinmod.com/unknown_user.png`,
+        href: "https://studio.penguinmod.com/credits.html#",
+    },
+    {
+        text: '1340073',
+        image: `https://penguinmod.com/unknown_user.png`,
+        href: "https://studio.penguinmod.com/credits.html#",
+    },
+    {
+        text: 'cubeycreator',
+        image: `https://penguinmod.com/unknown_user.png`,
+        href: "https://studio.penguinmod.com/credits.html#",
+    },
+    {
+        text: 'novaspiderultra',
+        image: `https://penguinmod.com/unknown_user.png`,
+        href: "https://studio.penguinmod.com/credits.html#",
+    },
+    {
+        text: 'poundpound0209',
+        image: `https://penguinmod.com/unknown_user.png`,
+        href: "https://studio.penguinmod.com/credits.html#",
+    },
+    {
+        text: 'gdplayer1035',
+        image: `https://penguinmod.com/unknown_user.png`,
+        href: "https://studio.penguinmod.com/credits.html#",
+    },
+    {
+        text: 'cognitixsammy',
+        image: `https://penguinmod.com/unknown_user.png`,
+        href: "https://studio.penguinmod.com/credits.html#",
+    },
+    {
+        text: 'thebusyman',
+        image: `https://penguinmod.com/unknown_user.png`,
+        href: "https://studio.penguinmod.com/credits.html#",
+    },
+    {
+        text: 'gen1x_lmao',
+        image: `https://penguinmod.com/unknown_user.png`,
+        href: "https://studio.penguinmod.com/credits.html#",
+    },
+];
+const pmSoundSubmittors = [
+    // github accounts
+    {
+        text: 'ddededodediamante',
+        image: `https://github.com/ddededodediamante.png`,
+        href: `https://github.com/ddededodediamante/`,
+    },
+    // unknown
+    {
+        text: 'maroonmball',
+        image: `https://penguinmod.com/unknown_user.png`,
+        href: "https://studio.penguinmod.com/credits.html#",
+    },
+];
 
 const extensionDevelopers = [
     'GarboMuffin',
@@ -360,7 +483,7 @@ const pmExtensionDevelopers = [
     'WAYLIVES',
     'MrRedstonia',
     'MikeDev101',
-    'BopShoes',
+    'liablelua',
     'AlexSchoolOH',
     'Monochromasity',
     'LilyMakesThings',
@@ -370,16 +493,17 @@ const pmExtensionDevelopers = [
     'oc9x97',
     'lego7set',
     'mariocraft987',
-    'Ashimee'
+    'AshimeeAlt'
 ].map(fromHardcodedGithub);
 
 export default {
     addonDevelopers: shuffle(addonDevelopers),
     pmDevelopers: shuffle(pmDevelopers),
-    logoArtists: shuffle(logoArtists),
     extensionDevelopers: shuffle(extensionDevelopers),
     pmExtensionDevelopers: shuffle(pmExtensionDevelopers),
     pmApiDevelopers: shuffle(pmApiDevelopers),
     pmTranslators: shuffle(pmTranslators),
+    pmSoundSubmittors: shuffle(pmSoundSubmittors),
+    pmCostumeSubmittors: shuffle(pmCostumeSubmittors),
     pmPullRequestDevelopers: shuffle(pmPullRequestDevelopers)
 };
