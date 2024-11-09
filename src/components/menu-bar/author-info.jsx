@@ -31,7 +31,7 @@ const ActualAuthorInfo = ({
             </h1>
             <div>
                 <span className={styles.usernameLine}>
-                    <a style={{ color: "white" }} target="_blank" href={"https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=" + username}>
+                    <a style={{ color: "white" }} target="_blank" href={"https://localhost:5173/profile?user=" + username}>
                         <FormattedMessage
                             defaultMessage="by {username}"
                             description="Shows that a project was created by this user"

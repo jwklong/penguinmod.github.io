@@ -155,7 +155,7 @@ const Footer = () => (
                             id="tw.footer.credits"
                         />
                     </a>
-                    <a href="https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/donate">
+                    <a href="https://localhost:5173/donate">
                         <FormattedMessage
                             defaultMessage="Donate"
                             description="Donation link in footer"
@@ -195,14 +195,14 @@ const Footer = () => (
                     </a>
                 </div>
                 <div className={styles.footerSection}>
-                    <a href="https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/terms">
+                    <a href="https://localhost:5173/terms">
                         <FormattedMessage
                             defaultMessage="Terms of Service"
                             description="Link to Terms of Service"
                             id="pm.terms"
                         />
                     </a>
-                    <a href="https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/privacy">
+                    <a href="https://localhost:5173/privacy">
                         <FormattedMessage
                             defaultMessage="Privacy Policy"
                             description="Link to privacy policy"
@@ -341,7 +341,7 @@ class Interface extends React.Component {
                     {isHomepage && projectId !== '0' && title && extraProjectInfo && extraProjectInfo.author && <div className={styles.projectDetails}>
                         <a
                             target="_blank"
-                            href={`https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=${extraProjectInfo.author}`}
+                            href={`https://localhost:5173/profile?user=${extraProjectInfo.author}`}
                             rel="noreferrer"
                         >
                             <img
@@ -355,7 +355,7 @@ class Interface extends React.Component {
                             <h2 dangerouslySetInnerHTML={{__html: formatProjectTitle(title)}} />
                             <p>by <a
                                 target="_blank"
-                                href={`https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=${extraProjectInfo.author}`}
+                                href={`https://localhost:5173/profile?user=${extraProjectInfo.author}`}
                                 rel="noreferrer"
                             >{extraProjectInfo.author}</a></p>
                         </div>
@@ -387,7 +387,7 @@ class Interface extends React.Component {
                                         <a
                                             style={{height: '32px'}}
                                             target="_blank"
-                                            href={`https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=${remixedProjectInfo.author}`}
+                                            href={`https://localhost:5173/profile?user=${remixedProjectInfo.author}`}
                                             rel="noreferrer"
                                         >
                                             <img
@@ -401,7 +401,7 @@ class Interface extends React.Component {
                                             Thanks to <b>
                                                 <a
                                                     target="_blank"
-                                                    href={`https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=${remixedProjectInfo.author}`}
+                                                    href={`https://localhost:5173/profile?user=${remixedProjectInfo.author}`}
                                                     rel="noreferrer"
                                                 >
                                                     {remixedProjectInfo.author}
@@ -457,7 +457,7 @@ class Interface extends React.Component {
                                         <a
                                             target="_blank"
                                             rel="noreferrer"
-                                            href={`https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/report?type=project&id=${projectId}`}
+                                            href={`https://localhost:5173/report?type=project&id=${projectId}`}
                                             className={styles.reportLink}
                                         >
                                             <img
@@ -474,7 +474,7 @@ class Interface extends React.Component {
                             </div>
                             <a
                                 target="_blank"
-                                href="https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/search?q=all:projects"
+                                href="https://localhost:5173/search?q=all:projects"
                                 rel="noreferrer"
                             >
                                 See more projects

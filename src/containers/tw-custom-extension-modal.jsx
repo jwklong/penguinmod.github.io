@@ -50,7 +50,7 @@ class CustomExtensionModal extends React.Component {
                 name: 'Extension',
                 description: 'Adds new blocks.',
                 tags: ['myextensions'],
-                rawURL: 'https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/line_blue.png',
+                rawURL: 'https://localhost:5173/line_blue.png',
                 featured: true,
                 deletable: true,
                 _id: generateRandomId()

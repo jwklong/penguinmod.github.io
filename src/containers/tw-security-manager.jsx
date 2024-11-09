@@ -34,7 +34,7 @@ const isTrustedExtension = url => (
     url.startsWith('http://localhost:8000') ||
     url.startsWith('http://localhost:6000') || // Launcher Home
     url.startsWith('http://localhost:6001') || // Launcher Extensions
-    url.startsWith('https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/') || // Local Home or Extensions
+    url.startsWith('https://localhost:5173/') || // Local Home or Extensions
     url.startsWith('http://localhost:5174') || // Local Home or Extensions
 
     extensionsTrustedByUser.has(url)
@@ -66,7 +66,7 @@ const isAlwaysTrustedForFetching = parsed => (
     parsed.origin.endsWith('.turbowarp.xyz') ||
 
     // Any PenguinMod service such as projects
-    parsed.origin === 'https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app' ||
+    parsed.origin === 'https://localhost:5173' ||
     parsed.origin.endsWith('.penguinmod.com') ||
 
     // GitHub

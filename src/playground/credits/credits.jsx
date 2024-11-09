@@ -97,7 +97,7 @@ const Credits = () => (
             </a>
             <h2>Domain Provider</h2>
             <p>
-                <a href="https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app">penguinmod.com</a> (and any subdomains) are currently
+                <a href="https://localhost:5173">penguinmod.com</a> (and any subdomains) are currently
                 provided by <a href="https://github.com/enderhacker">NotHouse</a>.
                 <br></br>
                 <a href="https://github.com/enderhacker">

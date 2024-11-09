@@ -20,7 +20,7 @@ const fromHardcodedGithub = username => ({
     text: username
 });
 const fromHardcodedNamed = username => ({
-    image: `https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/unknown_user.png`,
+    image: `https://localhost:5173/unknown_user.png`,
     href: "https://jwklong.github.io/penguinmod.github.io/credits.html#",
     text: username
 });
@@ -164,156 +164,156 @@ const pmApiDevelopers = [
 const pmTranslators = [
     {
         text: 'kolikiscool',
-        image: `https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/unknown_user.png`,
+        image: `https://localhost:5173/unknown_user.png`,
         href: "https://jwklong.github.io/penguinmod.github.io/credits.html#",
     },
     {
         text: 'n0name',
-        image: `https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/unknown_user.png`,
+        image: `https://localhost:5173/unknown_user.png`,
         href: "https://jwklong.github.io/penguinmod.github.io/credits.html#",
     },
     {
         text: 'a_pc',
-        image: `https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/unknown_user.png`,
+        image: `https://localhost:5173/unknown_user.png`,
         href: "https://jwklong.github.io/penguinmod.github.io/credits.html#",
     },
     {
         text: 'onetoanother',
         image: `https://trampoline.turbowarp.org/avatars/by-username/onetoanother`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=onetoanother",
+        href: "https://localhost:5173/profile?user=onetoanother",
     },
     {
         text: 'NamelessCat',
         image: `https://trampoline.turbowarp.org/avatars/by-username/NamelessCat`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=NamelessCat",
+        href: "https://localhost:5173/profile?user=NamelessCat",
     },
     {
         text: 'Just-Noone',
         image: `https://trampoline.turbowarp.org/avatars/by-username/Just-Noone`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=Just-Noone",
+        href: "https://localhost:5173/profile?user=Just-Noone",
     },
     {
         text: 'goose_but_smart',
         image: `https://trampoline.turbowarp.org/avatars/by-username/goose_but_smart`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=goose_but_smart",
+        href: "https://localhost:5173/profile?user=goose_but_smart",
     },
     {
         text: 'Le_Blob77',
         image: `https://trampoline.turbowarp.org/avatars/by-username/Le_Blob77`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=Le_Blob77",
+        href: "https://localhost:5173/profile?user=Le_Blob77",
     },
     {
         text: 'MrRedstonia',
         image: `https://trampoline.turbowarp.org/avatars/by-username/MrRedstonia`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=MrRedstonia",
+        href: "https://localhost:5173/profile?user=MrRedstonia",
     },
     {
         text: 'TheShovel',
         image: `https://trampoline.turbowarp.org/avatars/by-username/TheShovel`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=TheShovel",
+        href: "https://localhost:5173/profile?user=TheShovel",
     },
     {
         text: 'SmolBoi37',
-        image: `https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/unknown_user.png`,
+        image: `https://localhost:5173/unknown_user.png`,
         href: "https://jwklong.github.io/penguinmod.github.io/credits.html#",
     },
     {
         text: 'GigantTech',
         image: `https://trampoline.turbowarp.org/avatars/by-username/GigantTech`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=GigantTech",
+        href: "https://localhost:5173/profile?user=GigantTech",
     },
     {
         text: 'hacker_anonimo',
         image: `https://trampoline.turbowarp.org/avatars/by-username/hacker_anonimo`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=hacker_anonimo",
+        href: "https://localhost:5173/profile?user=hacker_anonimo",
     },
     {
         text: 'zaaxd52',
         image: `https://trampoline.turbowarp.org/avatars/by-username/zaaxd52`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=zaaxd52",
+        href: "https://localhost:5173/profile?user=zaaxd52",
     },
     {
         text: 'G1nX',
         image: `https://trampoline.turbowarp.org/avatars/by-username/G1nX`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=G1nX",
+        href: "https://localhost:5173/profile?user=G1nX",
     },
     {
         text: 'FNFFortune',
         image: `https://trampoline.turbowarp.org/avatars/by-username/FNFFortune`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=FNFFortune",
+        href: "https://localhost:5173/profile?user=FNFFortune",
     },
     // has since left the server
     // possibly they have a new account, so replace the name & url if so
     {
         text: 'Gabberythethughunte',
-        image: `https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/unknown_user.png`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=Gabberythethughunte",
+        image: `https://localhost:5173/unknown_user.png`,
+        href: "https://localhost:5173/profile?user=Gabberythethughunte",
     },
     {
         text: 'keriyo',
         image: `https://trampoline.turbowarp.org/avatars/by-username/keriyo`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=keriyo",
+        href: "https://localhost:5173/profile?user=keriyo",
     },
     {
         text: 'DenPlayTS',
         image: `https://trampoline.turbowarp.org/avatars/by-username/DenPlayTS`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=DenPlayTS",
+        href: "https://localhost:5173/profile?user=DenPlayTS",
     },
     {
         text: 'Tsalbre',
         image: `https://trampoline.turbowarp.org/avatars/by-username/Tsalbre`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=Tsalbre",
+        href: "https://localhost:5173/profile?user=Tsalbre",
     },
     {
         text: 'MubiLop',
         image: `https://trampoline.turbowarp.org/avatars/by-username/MubiLop`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=MubiLop",
+        href: "https://localhost:5173/profile?user=MubiLop",
     },
     {
         text: 'TLP136',
         image: `https://trampoline.turbowarp.org/avatars/by-username/TLP136`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=TLP136",
+        href: "https://localhost:5173/profile?user=TLP136",
     },
     {
         text: 'Cymock',
         image: `https://trampoline.turbowarp.org/avatars/by-username/Cymock`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=Cymock",
+        href: "https://localhost:5173/profile?user=Cymock",
     },
     {
         text: 'ItzzEndr',
         image: `https://trampoline.turbowarp.org/avatars/by-username/ItzzEndr`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=ItzzEndr",
+        href: "https://localhost:5173/profile?user=ItzzEndr",
     },
     {
         text: 'Capysussa',
         image: `https://trampoline.turbowarp.org/avatars/by-username/Capysussa`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=Capysussa",
+        href: "https://localhost:5173/profile?user=Capysussa",
     },
     // con-zie is now banned from PenguinMod
     {
         text: 'con-zie',
-        image: `https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/unknown_user.png`,
+        image: `https://localhost:5173/unknown_user.png`,
         href: "https://jwklong.github.io/penguinmod.github.io/credits.html#",
     },
     {
         text: 'ImNotScratchY_lolol',
         image: `https://trampoline.turbowarp.org/avatars/by-username/ImNotScratchY_lolol`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=ImNotScratchY_lolol",
+        href: "https://localhost:5173/profile?user=ImNotScratchY_lolol",
     },
     {
         text: 'justablock',
         image: `https://trampoline.turbowarp.org/avatars/by-username/justablock`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=justablock",
+        href: "https://localhost:5173/profile?user=justablock",
     },
     {
         text: 'inventionpro',
         image: `https://trampoline.turbowarp.org/avatars/by-username/inventionpro`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=inventionpro",
+        href: "https://localhost:5173/profile?user=inventionpro",
     },
     {
         text: 'SkyBuilder1717',
         image: `https://trampoline.turbowarp.org/avatars/by-username/SkyBuilder1717`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=SkyBuilder1717",
+        href: "https://localhost:5173/profile?user=SkyBuilder1717",
     },
     {
         text: 'Parham1258',
@@ -323,12 +323,12 @@ const pmTranslators = [
     {
         text: 'lem0n0fficial',
         image: `https://trampoline.turbowarp.org/avatars/by-username/lem0n0fficial`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=lem0n0fficial",
+        href: "https://localhost:5173/profile?user=lem0n0fficial",
     },
     {
         text: 'Oldcoinmania',
         image: `https://trampoline.turbowarp.org/avatars/by-username/Oldcoinmania`,
-        href: "https://penguinmod-home-git-new-backend-live-penguinmod.vercel.app/profile?user=Oldcoinmania",
+        href: "https://localhost:5173/profile?user=Oldcoinmania",
     },
     {
         text: 'mariocraft987',
