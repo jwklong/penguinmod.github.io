@@ -48,7 +48,7 @@ const fetchProjectToken = projectId => {
     if (hashParams.has('token')) {
         return Promise.resolve(hashParams.get('token'));
     }
-    return fetch(`https://localhost:8080/api/v1/projects/getproject?projectID=${projectId}&requestType=metadata`)
+    return fetch(`https://projects.penguinmod.com/api/v1/projects/getproject?projectID=${projectId}&requestType=metadata`)
         .then(r => {
             if (!r.ok) return null;
             return r.json();
@@ -306,7 +306,7 @@ const ProjectFetcherHOC = function (WrappedComponent) {
                     storage.setProjectToken(projectId);
                     assetPromise = storage.load(storage.AssetType.Project, projectId, storage.DataFormat.JSON);
                 } else {
-                    projectUrl = `https://localhost:8080/api/v1/projects/getprojectwrapper?safe=true&projectId=${projectId}`
+                    projectUrl = `https://projects.penguinmod.com/api/v1/projects/getprojectwrapper?safe=true&projectId=${projectId}`
                     assetPromise = progressMonitor.fetchWithProgress(projectUrl)
                         .then(async r => {
                             this.props.vm.runtime.renderer.setPrivateSkinAccess(false);

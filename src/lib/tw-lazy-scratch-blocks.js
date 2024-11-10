@@ -97,7 +97,7 @@ const load = () => {
                                 this.appendDummyInput('yourMom')
                                     .appendField('your mom')
                                     .appendField(new _ScratchBlocks.FieldImage(
-                                        'https://localhost:5173/dump/1039714598959452261.webp',
+                                        'https://penguinmod.com/dump/1039714598959452261.webp',
                                         15,
                                         15,
                                         '*',
@@ -109,7 +109,7 @@ const load = () => {
                             }
                             this.setColour('#ff0000');
                             this.setTooltip('your mom :trel:');
-                            this.setHelpUrl('https://localhost:5173/dump/urmom-your-mom.gif');
+                            this.setHelpUrl('https://penguinmod.com/dump/urmom-your-mom.gif');
                         };
                     }
                     const oldLoad = _ScratchBlocks.Blocks[prototypeName].domToMutation;
@@ -119,7 +119,7 @@ const load = () => {
                             this.appendDummyInput('yourMom')
                                 .appendField('your mom')
                                 .appendField(new _ScratchBlocks.FieldImage(
-                                    'https://localhost:5173/dump/1039714598959452261.webp',
+                                    'https://penguinmod.com/dump/1039714598959452261.webp',
                                     15,
                                     15,
                                     '*',
@@ -131,7 +131,7 @@ const load = () => {
                         }
                         this.setColour('#ff0000');
                         this.setTooltip('your mom :trel:');
-                        this.setHelpUrl('https://localhost:5173/dump/urmom-your-mom.gif');
+                        this.setHelpUrl('https://penguinmod.com/dump/urmom-your-mom.gif');
                     };
                     oldConstructor.call(this, ...args);
                 };

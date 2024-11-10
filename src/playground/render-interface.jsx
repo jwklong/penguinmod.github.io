@@ -126,7 +126,7 @@ runAddons();
 //     if (projectDetailCache[String(id)] != null) return projectDetailCache[String(id)];
 
 //     // TODO: when this is fixed change this to the new api
-//     const response = await fetch(`https://localhost:8080/api/projects/getPublished?id=${id}`);
+//     const response = await fetch(`https://projects.penguinmod.com/api/projects/getPublished?id=${id}`);
 //     // Don't continue if the api never returned 200-299 since we would cache an error as project details
 //     if (!response.ok) return {};
 
@@ -155,7 +155,7 @@ const Footer = () => (
                             id="tw.footer.credits"
                         />
                     </a>
-                    <a href="https://localhost:5173/donate">
+                    <a href="https://penguinmod.com/donate">
                         <FormattedMessage
                             defaultMessage="Donate"
                             description="Donation link in footer"
@@ -195,14 +195,14 @@ const Footer = () => (
                     </a>
                 </div>
                 <div className={styles.footerSection}>
-                    <a href="https://localhost:5173/terms">
+                    <a href="https://penguinmod.com/terms">
                         <FormattedMessage
                             defaultMessage="Terms of Service"
                             description="Link to Terms of Service"
                             id="pm.terms"
                         />
                     </a>
-                    <a href="https://localhost:5173/privacy">
+                    <a href="https://penguinmod.com/privacy">
                         <FormattedMessage
                             defaultMessage="Privacy Policy"
                             description="Link to privacy policy"
@@ -280,7 +280,7 @@ class Interface extends React.Component {
     }
     copyProjectLink (id) {
         if ('clipboard' in navigator && 'writeText' in navigator.clipboard) {
-            navigator.clipboard.writeText(`https://localhost:8080/${id}`);
+            navigator.clipboard.writeText(`https://projects.penguinmod.com/${id}`);
         }
     }
     render () {
@@ -342,21 +342,21 @@ class Interface extends React.Component {
                     {isHomepage && projectId !== '0' && title && extraProjectInfo && extraProjectInfo.author && <div className={styles.projectDetails}>
                         <a
                             target="_blank"
-                            href={`https://localhost:5173/profile?user=${extraProjectInfo.author}`}
+                            href={`https://penguinmod.com/profile?user=${extraProjectInfo.author}`}
                             rel="noreferrer"
                         >
                             <img
                                 className={styles.projectAuthorImage}
                                 title={extraProjectInfo.author}
                                 alt={extraProjectInfo.author}
-                                src={`https://localhost:8080/api/v1/users/getpfp?username=${extraProjectInfo.author}`}
+                                src={`https://projects.penguinmod.com/api/v1/users/getpfp?username=${extraProjectInfo.author}`}
                             />
                         </a>
                         <div className={styles.projectMetadata}>
                             <h2 dangerouslySetInnerHTML={{__html: formatProjectTitle(title)}} />
                             <p>by <a
                                 target="_blank"
-                                href={`https://localhost:5173/profile?user=${extraProjectInfo.author}`}
+                                href={`https://penguinmod.com/profile?user=${extraProjectInfo.author}`}
                                 rel="noreferrer"
                             >{extraProjectInfo.author}</a></p>
                         </div>
@@ -388,21 +388,21 @@ class Interface extends React.Component {
                                         <a
                                             style={{height: '32px'}}
                                             target="_blank"
-                                            href={`https://localhost:5173/profile?user=${remixedProjectInfo.author}`}
+                                            href={`https://penguinmod.com/profile?user=${remixedProjectInfo.author}`}
                                             rel="noreferrer"
                                         >
                                             <img
                                                 className={styles.remixAuthorImage}
                                                 title={remixedProjectInfo.author}
                                                 alt={remixedProjectInfo.author}
-                                                src={`https://localhost:8080/api/v1/users/getpfp?username=${remixedProjectInfo.author}`}
+                                                src={`https://projects.penguinmod.com/api/v1/users/getpfp?username=${remixedProjectInfo.author}`}
                                             />
                                         </a>
                                         <p>
                                             Thanks to <b>
                                                 <a
                                                     target="_blank"
-                                                    href={`https://localhost:5173/profile?user=${remixedProjectInfo.author}`}
+                                                    href={`https://penguinmod.com/profile?user=${remixedProjectInfo.author}`}
                                                     rel="noreferrer"
                                                 >
                                                     {remixedProjectInfo.author}
@@ -458,7 +458,7 @@ class Interface extends React.Component {
                                         <a
                                             target="_blank"
                                             rel="noreferrer"
-                                            href={`https://localhost:5173/report?type=project&id=${projectId}`}
+                                            href={`https://penguinmod.com/report?type=project&id=${projectId}`}
                                             className={styles.reportLink}
                                         >
                                             <img
@@ -475,7 +475,7 @@ class Interface extends React.Component {
                             </div>
                             <a
                                 target="_blank"
-                                href="https://localhost:5173/search?q=all:projects"
+                                href="https://penguinmod.com/search?q=all:projects"
                                 rel="noreferrer"
                             >
                                 See more projects

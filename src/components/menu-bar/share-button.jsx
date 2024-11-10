@@ -28,7 +28,7 @@ const getProjectUri = () => new Promise(resolve => {
 const isUploadAvailable = async () => {
     let res = null;
     try {
-        res = await fetch('https://localhost:8080/api/v1/projects/canuploadprojects').then(res => res.json());
+        res = await fetch('https://projects.penguinmod.com/api/v1/projects/canuploadprojects').then(res => res.json());
     } catch {
         // failed to fetch entirely
         return false;
@@ -60,8 +60,8 @@ class ShareButton extends React.Component {
         this.handleMessageEvent(e);
     }
     async handleMessageEvent(e) {
-        if (!e.origin.startsWith(`https://localhost:5173`)) {
-            //return; // BTODO: uncomment this line for prod (also change the link)
+        if (!e.origin.startsWith(`https://penguinmod.com`)) {
+            return;
         }
 
         if (!e.data.p4) {
@@ -148,7 +148,7 @@ class ShareButton extends React.Component {
             }
 
             const url = location.origin;
-            window.open(`https://localhost:5173/${targetPage}?name=${this.props.projectTitle}${editPiece}${remixPiece}&external=${url}`, '_blank');
+            window.open(`https://penguinmod.com/${targetPage}?name=${this.props.projectTitle}${editPiece}${remixPiece}&external=${url}`, '_blank');
         });
     }
     render() {

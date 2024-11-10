@@ -236,7 +236,7 @@ class Renderer {
         }
         return (
             <a
-                href={`https://localhost:5173/search?q=%23${id}`}
+                href={`https://penguinmod.com/search?q=%23${id}`}
                 target="_blank"
                 rel="noreferrer"
             >
@@ -248,7 +248,7 @@ class Renderer {
     mention (name) {
         return (
             <a
-                href={`https://localhost:5173/profile?user=${name}`}
+                href={`https://penguinmod.com/profile?user=${name}`}
                 target="_blank"
                 rel="noreferrer"
             >
